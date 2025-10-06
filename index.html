@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedoman Audit Internal - Adigunawantahir</title>
+    <link href="https://fonts.googleapis.com/css2?family=Calibri&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS (Cascading Style Sheets) - Bahasa untuk mengatur Tampilan */
+        :root {
+            --light-blue: #B0E0E6; /* Biru Muda */
+            --text-color: #1a1a1a;
+            --header-color: #333366; /* Biru gelap untuk kontras */
+            --accent-color: #FFD700; /* Kuning Emas */
+            --font-size-base: 11pt;
+            --animation-duration: 0.8s;
+        }
+
+        body {
+            font-family: 'Calibri', Arial, sans-serif; /* Font: Calibri, ukuran 11pt */
+            font-size: var(--font-size-base); 
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background-color: var(--light-blue); /* Background Biru Muda */
+            /* Efek Kartun Interaktif pada Background */
+            background-image: repeating-linear-gradient(
+                45deg, 
+                rgba(255, 255, 255, 0.1), 
+                rgba(255, 255, 255, 0.1) 10px, 
+                transparent 10px, 
+                transparent 20px
+            );
+            scroll-behavior: smooth;
+        }
+
+        /* Navigasi (Menu) */
+        header {
+            background-color: var(--header-color);
+            position: sticky; /* Menu tetap di atas saat di-scroll */
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            display: block;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        /* Semua Halaman Konten (Section) */
+        .page {
+            min-height: 80vh; 
+            padding: 60px 5%;
+            margin: 30px auto;
+            max-width: 1200px;
+            background-color: rgba(255, 255, 255, 0.9); /* Putih semi-transparan untuk keterbacaan */
+            border-radius: 15px; 
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); 
+            transition: transform var(--animation-duration) ease-out, opacity var(--animation-duration) ease-out;
+            opacity: 0; /* Awalnya tersembunyi */
+            transform: translateY(50px); /* Awalnya sedikit di bawah */
+        }
+        
+        /* Efek 'Munching': Kelas 'active' dipicu oleh JavaScript saat di-scroll */
+        .page.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Halaman Cover (Bagian 1) */
+        #cover-page {
+            min-height: 100vh;
+            background-color: var(--header-color);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 0;
+        }
+        #cover-page img {
+            width: 90%;
+            max-width: 400px;
+            height: auto;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+        }
+        #cover-page p {
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+
+    <section id="cover-page" class="page active">
+        <img src="cover.jpg" alt="Cover Pedoman Audit Internal">
+        <h1>PEDOMAN AUDIT INTERNAL</h1>
+        <p>— Internal Audit Manual —</p>
+        <p style="font-size:1.5em; margin-top: 30px; color: var(--accent-color);">Adigunawantahir</p>
+    </section>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#intro">1. Pendahuluan</a></li>
+                <li><a href="#flow">2. Alur Kerja</a></li>
+                <li><a href="#qaip">3. QAIP</a></li>
+                <li><a href="#eqa">4. EQA</a></li>
+                <li><a href="#dev">5. Kompetensi</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section id="intro" class="page">
+        <h2>1. Transformasi Peran Auditor</h2>
+        <p>Profesi audit internal telah bertransformasi dari pemeriksa kepatuhan menjadi **penasihat tepercaya** yang memberikan wawasan strategis untuk melindungi dan meningkatkan nilai organisasi.</p>
+        <p>Pedoman ini disusun untuk menjawab kebutuhan akan metodologi yang konsisten, profesional, dan selaras dengan standar global, dengan mengacu pada **Standar Audit Internal Global (GIAS) 2024**.</p>
+    </section>
+
+    <section id="flow" class="page">
+        <h2>2. Kerangka Kerja Audit (Alur Kerja)</h2>
+        <p>Dokumen ini menawarkan kerangka kerja yang terstruktur dan relevan, mencakup alur kerja yang jelas untuk setiap tahapan audit:</p>
+        <ul>
+            <li>**Perencanaan Strategis Berbasis Risiko:** Tahap awal untuk mengidentifikasi area kritis.</li>
+            <li>**Pelaksanaan Pekerjaan Lapangan:** Menerapkan metodologi yang konsisten saat pengumpulan bukti.</li>
+            <li>**Pelaporan yang Berdampak:** Menyajikan temuan dan rekomendasi yang strategis.</li>
+            <li>**Pemantauan Tindak Lanjut:** Memastikan manajemen telah mengambil tindakan korektif yang efektif.</li>
+        </ul>
+    </section>
+    
+    <section id="qaip" class="page">
+        <h2>3. Quality Assurance and Improvement Program (QAIP)</h2>
+        <p>**QAIP** (Program Penjaminan dan Peningkatan Mutu) berfungsi untuk memastikan efektivitas dan kepatuhan terhadap standar. Program ini mencakup:</p>
+        <ol>
+            <li>**Internal Quality Review:** Pemantauan kinerja berkelanjutan dan asesmen internal berkala.</li>
+            <li>**Evaluasi:** Mengevaluasi kesesuaian dengan Standar IIA, Kode Etik, dan efektivitas fungsi secara keseluruhan.</li>
+        </ol>
+    </section>
+    
+    <section id="eqa" class="page">
+        <h2>4. Asesmen Kualitas Eksternal (EQA)</h2>
+        <p>**EQA** (External Quality Assessment) wajib dilakukan oleh asesor yang berkualitas dan independen setidaknya sekali setiap lima tahun.</p>
+        <ul>
+            <li>**Tujuan:** Hasil asesmen dilaporkan kepada Komite Audit dan menjadi *input* kunci untuk peningkatan berkelanjutan.</li>
+        </ul>
+        <p>Proses ini menjamin fungsi audit internal tetap relevan dan efektif sesuai praktik terbaik global.</p>
+    </section>
+    
+    <section id="dev" class="page">
+        <h2>5. Pengembangan dan Peningkatan Kompetensi</h2>
+        <p>Fungsi Audit Internal berkomitmen pada peningkatan berkelanjutan atas kompetensi dan kapasitas tim audit. Setiap auditor internal bertanggung jawab untuk menjaga dan mengembangkan pengetahuan dan keterampilan mereka.</p>
+        <p>Peningkatan kompetensi dapat dilakukan melalui:</p>
+        <ul>
+            <li>Pelatihan profesional berkelanjutan (**CPD** - Continuing Professional Development).</li>
+            <li>Sertifikasi profesional (seperti **Certified Internal Auditor - CIA**).</li>
+            <li>Pembelajaran mandiri (*self-study*).</li>
+        </ul>
+    </section>
+
+    <footer>
+        &copy; 2025 Pedoman Audit Internal. Disusun oleh **Adigunawantahir**.
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('.page');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.2 // Ketika 20% bagian terlihat
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active'); // Tampilkan dengan animasi
+                    } else if (entry.target.id !== 'cover-page') {
+                        entry.target.classList.remove('active'); // Hilangkan saat keluar dari pandangan
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+            
+            // Memastikan Cover selalu aktif
+            document.getElementById('cover-page').classList.add('active');
+        });
+    </script>
+
+</body>
+</html>
