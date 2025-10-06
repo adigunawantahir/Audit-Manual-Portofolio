@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-en="Internal Audit Manual - Adi Gunawan Tahir" data-id="Pedoman Audit Internal - Adi Gunawan Tahir">Internal Audit Manual - Adi Gunawan Tahir</title>
+    <link href="https://fonts.googleapis.com/css2?family=Calibri:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS (Gaya Corporate/Profesional) */
+        :root {
+            --light-bg: #F0F2F5; 
+            --text-color: #212121;
+            --header-color: #004d99;
+            --accent-color: #FFC300; 
+            --font-size-base: 1.1em; 
+            --animation-duration: 0.5s;
+        }
+
+        body {
+            font-family: 'Calibri', Arial, sans-serif;
+            font-size: var(--font-size-base); 
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background-color: var(--light-bg); 
+            background-image: none;
+            scroll-behavior: smooth;
+        }
+
+        /* Navigasi (Menu) */
+        header {
+            background-color: var(--header-color);
+            position: sticky; 
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 10px; 
+            flex-wrap: wrap; 
+        }
+        nav {
+            flex-grow: 1; 
+            display: flex;
+            justify-content: center;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+            flex-wrap: wrap; 
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 8px; 
+            display: block;
+            border-radius: 4px; 
+            transition: background-color 0.3s;
+            text-transform: uppercase; 
+            font-weight: bold;
+            font-size: 0.8em; 
+        }
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Tombol Bendera (Bulat, Timbul) */
+        .lang-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            margin: 0 5px; 
+            width: 40px;
+            height: 40px;
+            font-size: 20px;
+            line-height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.5), inset 0 2px 3px rgba(255,255,255,0.7); 
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-align: center;
+            outline: none; 
+        }
+        .lang-button.active {
+            box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset 0 1px 2px rgba(255,255,255,0.5), 0 0 0 3px var(--accent-color);
+        }
+
+        /* Semua Halaman Konten (Section) */
+        .page {
+            padding: 40px 5%;
+            margin: 30px auto;
+            max-width: 1000px;
+            background-color: white; 
+            border-radius: 4px; 
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+            
+            opacity: 0; 
+            transform: translateY(20px); 
+            transition: opacity var(--animation-duration) ease-out, transform var(--animation-duration) ease-out;
+            min-height: 200px; 
+        }
+        .page.active {
+             opacity: 1; 
+             transform: translateY(0); 
+        }
+
+        /* Judul dan Sub-judul */
+        .page h2, .page h3 {
+            text-align: left; /* Memastikan judul rata kiri */
+        }
+        .page h2 {
+            font-size: 1.8em; 
+            color: var(--header-color);
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            font-weight: bold;
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1); 
+        }
+
+        /* Paragraf dan List Item - PENTING: RATA KIRI-KANAN (JUSTIFIED) */
+        .page p, .page li {
+            text-align: justify; /* Rata Kiri dan Rata Kanan */
+            margin-bottom: 1em; 
+            line-height: 1.8;
+            padding-left: 0;
+            list-style-position: inside;
+        }
+        
+        /* Halaman Cover (Bagian 1) */
+        #cover-page {
+            min-height: 100vh;
+            background-color: var(--header-color);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 0;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        /* Gambar Cover Bulat Timbul */
+        #cover-page img {
+            width: 250px;
+            height: 250px;
+            object-fit: cover; 
+            border-radius: 50%; 
+            border: 5px solid white;
+            box-shadow: 
+                0 0 0 10px rgba(255, 255, 255, 0.2), 
+                0 10px 20px rgba(0, 0, 0, 0.7), 
+                inset 0 0 10px rgba(0, 0, 0, 0.3);
+            margin-bottom: 30px;
+            background-color: #555;
+        }
+        
+        /* Styling Judul Word Art Glossy */
+        #cover-page h1 {
+            font-size: 3.5em; 
+            color: white; 
+            text-shadow: 
+                0 0 5px rgba(0, 0, 0, 0.8), 
+                0 0 15px rgba(0, 0, 0, 0.5),
+                0 5px 10px rgba(0, 0, 0, 1), 
+                -2px -2px 3px rgba(255, 255, 255, 0.2); 
+            
+            margin-bottom: 10px;
+            text-transform: uppercase; 
+            letter-spacing: 5px; 
+            font-weight: 900; 
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: var(--header-color);
+            color: white;
+            margin-top: 50px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+    <section id="cover-page" class="page active">
+        <img src="cover.jpg" alt="Internal Audit Manual Cover"> 
+        
+        <h1>INTERNAL AUDIT MANUAL</h1>
+        <p>Created by; Adi Gunawan Tahir</p>
+    </section>
+
+    <header>
+        <nav>
+            <ul id="main-nav">
+                <li><a href="#charter" data-en="1. CHARTER" data-id="1. PIAGAM">1. PIAGAM</a></li>
+                <li><a href="#planning" data-en="2. PLANNING (AAP)" data-id="2. PERENCANAAN (AAP - ANNUAL AUDIT PLAN)">2. PERENCANAAN (AAP - ANNUAL AUDIT PLAN)</a></li>
+                <li><a href="#execution" data-en="3. EXECUTION" data-id="3. PELAKSANAAN">3. PELAKSANAAN</a></li>
+                <li><a href="#qaip" data-en="4. QAIP" data-id="4. QAIP (QUALITY ASSURANCE AND IMPROVEMENT PROGRAM)">4. QAIP (QUALITY ASSURANCE AND IMPROVEMENT PROGRAM)</a></li>
+                <li><a href="#eqa" data-en="5. EQA" data-id="5. EQA (EXTERNAL QUALITY ASSESSMENT)">5. EQA (EXTERNAL QUALITY ASSESSMENT)</a></li>
+                <li><a href="#dev" data-en="6. COMPETENCY" data-id="6. KOMPETENSI">6. KOMPETENSI</a></li>
+            </ul>
+        </nav>
+        <div>
+            <button class="lang-button" id="en-lang-btn" onclick="setLang('en')" title="English">🇺🇸</button>
+            <button class="lang-button" id="id-lang-btn" onclick="setLang('id')" title="Bahasa Indonesia">🇮🇩</button>
+        </div>
+    </header>
+    
+    <section id="charter" class="page">
+        <h2 data-en="1. AUDIT CHARTER AND INDEPENDENCE" data-id="1. PIAGAM DAN KEWENANGAN AUDIT INTERNAL">1. PIAGAM DAN KEWENANGAN AUDIT INTERNAL</h2>
+        <p data-en="The authority, role, and responsibilities of the Internal Audit Function are formally defined in the Internal Audit Charter. This document is the constitutional foundation that grants the function its mandate to provide independent and objective assurance and advice to protect and enhance organizational value. As a strategic partner, the function systematically evaluates and promotes improvements in governance, risk management, and control processes. Independence is realized through a direct functional reporting structure to the [Audit Committee or equivalent oversight body]. This structure provides the necessary authority, ensures unrestricted access to all records, assets, and personnel, and guarantees freedom from undue interference." data-id="Kewenangan, peran, dan tanggung jawab Fungsi Audit Internal secara formal didefinisikan dalam Piagam Audit Internal. Dokumen ini adalah landasan konstitusional yang memberikan mandat untuk memberikan keyakinan (assurance) dan saran (advice) yang independen dan objektif guna melindungi serta meningkatkan nilai organisasi. Sebagai mitra strategis, fungsi ini secara sistematis mengevaluasi dan mendorong perbaikan pada tiga pilar utama: proses tata kelola (governance), manajemen risiko, dan pengendalian (control). Independensi direalisasikan melalui struktur pelaporan fungsional langsung kepada [Komite Audit atau badan pengawas setara]. Struktur ini memberikan kewenangan yang diperlukan, memastikan akses tidak terbatas ke seluruh catatan, aset, dan personel, serta menjamin kebebasan dari campur tangan yang tidak semestinya."></p>
+        <h3 style="font-size: 1.2em; color: var(--header-color);" data-en="Core Principles:" data-id="Prinsip Inti Kewenangan:">Prinsip Inti Kewenangan:</h3>
+        <ul>
+            <li data-en="Systematically evaluates and promotes improvements in governance, risk management, and control processes." data-id="Secara sistematis mengevaluasi dan mendorong perbaikan pada proses tata kelola (governance), manajemen risiko, dan pengendalian (control).">Systematically evaluates and promotes improvements in governance, risk management, and control processes.</li>
+            <li data-en="Ensures unrestricted access to all records, assets, and personnel." data-id="Memastikan akses tidak terbatas ke seluruh catatan, aset, dan personel.">Ensures unrestricted access to all records, assets, and personnel.</li>
+            <li data-en="Guarantees freedom from undue interference in determining the scope and execution of the work." data-id="Menjamin kebebasan dari campur tangan yang tidak semestinya dalam penentuan ruang lingkup dan pelaksanaan kerja.">Guarantees freedom from undue interference in determining the scope and execution of the work.</li>
+        </ul>
+    </section>
+
+    <section id="planning" class="page">
+        <h2 data-en="2. STRATEGIC & ANNUAL AUDIT PLANNING (AAP - ANNUAL AUDIT PLAN)" data-id="2. PERENCANAAN AUDIT STRATEGIS & TAHUNAN (AAP - ANNUAL AUDIT PLAN)">2. PERENCANAAN AUDIT STRATEGIS & TAHUNAN (AAP - ANNUAL AUDIT PLAN)</h2>
+        <p data-en="The foundation of effective audit planning is a risk-based approach. This methodology ensures that resources are strategically allocated to the areas of most significant risk to the achievement of objectives, thereby maximizing the value of each engagement." data-id="Landasan dari perencanaan audit yang efektif adalah pendekatan yang berfokus pada risiko (risk-based approach). Metodologi ini memastikan bahwa sumber daya dialokasikan secara strategis ke area yang memiliki risiko paling signifikan terhadap pencapaian tujuan, sehingga memaksimalkan nilai tambah dari setiap penugasan."></p>
+        <h3 style="font-size: 1.2em; color: var(--header-color);" data-en="Planning Process Criteria:" data-id="Kriteria Proses Perencanaan:">Planning Process Criteria:</h3>
+        <ol>
+            <li data-en="Development of the Audit Universe (a comprehensive inventory of all auditable entities)." data-id="Pengembangan Semesta Audit (Audit Universe), yaitu sebuah inventaris komprehensif dari seluruh entitas yang dapat diaudit.">Development of the Audit Universe (a comprehensive inventory of all auditable entities).</li>
+            <li data-en="Systematic Risk Assessment to prioritize audit areas based on financial impact and complexity." data-id="Penilaian Risiko (Risk Assessment) yang sistematis untuk memprioritaskan area audit berdasarkan dampak finansial dan kompleksitas.">Systematic Risk Assessment to prioritize audit areas based on financial impact and complexity.</li>
+            <li data-en="Creation of the Annual Audit Plan (AAP), outlining engagements and resource allocation for approval." data-id="Penyusunan Rencana Audit Tahunan (AAP), yang menguraikan penugasan dan alokasi sumber daya untuk mendapatkan persetujuan.">Creation of the Annual Audit Plan (AAP), outlining engagements and resource allocation for approval.</li>
+        </ol>
+    </section>
+
+    <section id="execution" class="page">
+        <h2 data-en="3. AUDIT EXECUTION (TESTING & EVIDENCE)" data-id="3. PELAKSANAAN AUDIT (PENGUJIAN & BUKTI)">3. PELAKSANAAN AUDIT (PENGUJIAN & BUKTI)</h2>
+        <p data-en="The audit team will gather relevant information to obtain a thorough understanding of the business processes, internal control systems, and inherent risks within the audited area. This understanding forms the basis for designing effective testing procedures." data-id="Tim audit akan mengumpulkan informasi yang relevan untuk memperoleh pemahaman mendalam mengenai proses bisnis, sistem pengendalian internal, dan risiko yang melekat pada area yang diaudit. Pemahaman ini menjadi dasar untuk merancang prosedur pengujian yang efektif."></p>
+        <h3 style="font-size: 1.2em; color: var(--header-color);" data-en="Execution Procedures:" data-id="Prosedur Pelaksanaan:">Execution Procedures:</h3>
+        <ul>
+            <li data-en="Information Gathering via document reviews, process observations, and key personnel interviews." data-id="Pengumpulan Informasi melalui tinjauan dokumen, observasi proses, dan wawancara dengan personel kunci.">Information Gathering via document reviews, process observations, and key personnel interviews.</li>
+            <li data-en="Performing tests to evaluate the design and operational effectiveness of internal controls." data-id="Melakukan pengujian untuk mengevaluasi desain dan efektivitas operasional dari pengendalian internal.">Melakukan pengujian untuk mengevaluasi desain dan efektivitas operasional dari pengendalian internal.</li>
+            <li data-en="All findings must be supported by sufficient, reliable, relevant, and useful audit evidence." data-id="Semua temuan harus didukung oleh bukti audit yang cukup, andal, relevan, dan bermanfaat.">All findings must be supported by sufficient, reliable, relevant, and useful audit evidence.</li>
+        </ul>
+    </section>
+
+    <section id="qaip" class="page">
+        <h2 data-en="4. QAIP (QUALITY ASSURANCE AND IMPROVEMENT PROGRAM)" data-id="4. QAIP (QUALITY ASSURANCE AND IMPROVEMENT PROGRAM)">4. QAIP (QUALITY ASSURANCE AND IMPROVEMENT PROGRAM)</h2>
+        <p data-en="The Internal Audit Function runs a Quality Assurance and Improvement Program (QAIP). This program is crucial for maintaining auditor credibility and demonstrating continuous adherence to professional standards." data-id="Fungsi Audit Internal menjalankan Program Penjaminan dan Peningkatan Kualitas (QAIP). Program ini penting untuk menjaga kredibilitas auditor dan menunjukkan kepatuhan berkelanjutan terhadap standar profesional."></p>
+        <h3 style="font-size: 1.2em; color: var(--header-color);" data-en="QAIP Components:" data-id="Komponen QAIP:">QAIP Components:</h3>
+        <ol>
+            <li data-en="Internal Quality Review: Involves ongoing monitoring (supervision) and periodic internal assessments." data-id="Review Kualitas Internal: Melibatkan pemantauan berkelanjutan (supervisi) dan asesmen internal berkala.">Internal Quality Review: Involves ongoing monitoring (supervision) and periodic internal assessments.</li>
+            <li data-en="Formal Evaluation: Assesses the function's conformance with IIA Standards and the Code of Ethics." data-id="Evaluasi Formal: Menilai kesesuaian fungsi dengan IIA Standards dan Code of Ethics.">Formal Evaluation: Assesses the function's conformance with IIA Standards and the Code of Ethics.</li>
+        </ol>
+    </section>
+
+    <section id="eqa" class="page">
+        <h2 data-en="5. EQA (EXTERNAL QUALITY ASSESSMENT)" data-id="5. EQA (EXTERNAL QUALITY ASSESSMENT)">5. EQA (EXTERNAL QUALITY ASSESSMENT)</h2>
+        <p data-en="In accordance with the IIA Standards, the Internal Audit Function will undergo an External Quality Assessment (EQA) by a qualified, independent assessor at least once every five years to ensure maximum objectivity and credibility." data-id="Sesuai dengan Standar IIA, Fungsi Audit Internal akan menjalani Penilaian Kualitas Eksternal (EQA) oleh penilai yang independen dan kompeten setidaknya sekali setiap lima tahun untuk menjamin objektivitas dan kredibilitas maksimal."></p>
+        <h3 style="font-size: 1.2em; color: var(--header-color);" data-en="EQA Key Requirements:" data-id="Persyaratan Utama EQA:">EQA Key Requirements:</h3>
+        <ul>
+            <li data-en="Frequency: Must be performed at least once every five years." data-id="Frekuensi: Harus dilakukan setidaknya sekali setiap lima tahun.">Frequency: Must be performed at least once every five years.</li>
+            <li data-en="Reporting: Results are reported directly to the Audit Committee." data-id="Pelaporan: Hasil dilaporkan langsung kepada Komite Audit (atau badan pengawas setara).">Reporting: Results are reported directly to the Audit Committee.</li>
+            <li data-en="Purpose: Serves as a key input for continuous improvement and global alignment." data-id="Tujuan: Berfungsi sebagai masukan penting untuk peningkatan berkelanjutan dan keselarasan global.">Purpose: Serves as a key input for continuous improvement and global alignment.</li>
+        </ul>
+    </section>
+
+    <section id="dev" class="page">
+        <h2 data-en="6. COMPETENCY AND CONTINUOUS DEVELOPMENT" data-id="6. KOMPETENSI DAN PENGEMBANGAN BERKELANJUTAN">6. KOMPETENSI DAN PENGEMBANGAN BERKELANJUTAN</h2>
+        <p data-en="The Internal Audit Function is committed to the continuous enhancement of the audit team's competence and capacity. Each internal auditor is responsible for maintaining and developing their knowledge, skills, and other competencies through ongoing professional development." data-id="Fungsi Audit Internal berkomitmen untuk meningkatkan kompetensi dan kapasitas tim audit secara berkelanjutan. Setiap auditor internal bertanggung jawab untuk menjaga dan mengembangkan pengetahuan, keterampilan, dan kompetensi lainnya melalui program pengembangan profesional berkelanjutan."></p>
+        <h3 style="font-size: 1.2em; color: var(--header-color);" data-en="Professional Development Paths:" data-id="Jalur Pengembangan Profesional:">Professional Development Paths:</h3>
+        <ul>
+            <li data-en="Continuous Professional Development (CPD) and ongoing training." data-id="Pelatihan dan Pengembangan Profesional Berkelanjutan (CPD).">Continuous Professional Development (CPD) and ongoing training.</li>
+            <li data-en="Professional certifications, such as the Certified Internal Auditor (CIA)." data-id="Sertifikasi profesional, seperti Certified Internal Auditor (CIA).">Professional certifications, such as the Certified Internal Auditor (CIA).</li>
+            <li data-en="Proactive self-study and independent learning." data-id="Pembelajaran mandiri (Self-study) yang proaktif.">Proactive self-study and independent learning.</li>
+        </ul>
+    </section>
+
+    <footer>
+        <span data-en="&copy; 2025 Internal Audit Manual. Created by Adi Gunawan Tahir." data-id="&copy; 2025 Pedoman Audit Internal. Disusun oleh Adi Gunawan Tahir.">&copy; 2025 Internal Audit Manual. Created by Adi Gunawan Tahir.</span>
+    </footer>
+
+    <script>
+        let currentLang = 'en'; 
+
+        function setLang(lang) {
+            currentLang = lang;
+            
+            // Ganti kelas aktif pada tombol bendera
+            document.getElementById('en-lang-btn').classList.remove('active');
+            document.getElementById('id-lang-btn').classList.remove('active');
+            document.getElementById(`${lang}-lang-btn`).classList.add('active');
+
+            document.documentElement.lang = currentLang;
+
+            document.querySelectorAll('[data-en], [data-id]').forEach(el => {
+                const text = el.getAttribute(`data-${currentLang}`);
+                if (text) {
+                    if(el.tagName === 'A' || el.tagName === 'LI' || el.tagName === 'H2' || el.tagName === 'H3' || el.tagName === 'P' || el.tagName === 'SPAN' || el.tagName === 'H1') {
+                        el.textContent = text;
+                    }
+                }
+            });
+            
+            document.title = document.querySelector('title').getAttribute(`data-${currentLang}`);
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('.page');
+
+            // SOLUSI UNTUK GAMBAR COVER: Memaksa muat ulang gambar dengan timestamp (Anti-Cache)
+            const coverImg = document.querySelector('#cover-page img');
+            if (coverImg) {
+                const timestamp = new Date().getTime();
+                coverImg.src = `cover.jpg?v=${timestamp}`;
+            }
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1 
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active'); 
+                    } else if (entry.target.id !== 'cover-page') {
+                        entry.target.classList.remove('active'); 
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+            
+            document.getElementById('cover-page').classList.add('active');
+
+            // Atur default language ke English saat halaman dimuat
+            setLang('en'); 
+        });
+    </script>
+
+</body>
+</html>
