@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Internal Audit Manual — Adi Gunawan Tahir</title>
+<style>
+  :root{
+    --accent:#0288d1;
+  }
+  body{margin:0;font-family:Calibri,Arial,sans-serif;color:white;overflow-x:hidden;scroll-behavior:smooth;
+    background:url('https://images.unsplash.com/illustration-abstract-office-teamwork?auto=format&fit=crop&w=1600&q=80') center/cover fixed no-repeat;
+    background-color:#bfefff;}
+  header{position:fixed;top:0;left:0;width:100%;background:rgba(2,136,209,0.95);display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;box-shadow:0 4px 12px rgba(0,0,0,0.3);z-index:1000;backdrop-filter:blur(6px);}
+  header h1{margin:0;font-size:1.2rem;}
+  .lang-toggle{background:#0277bd;border:none;color:white;padding:0.5rem 1rem;border-radius:20px;cursor:pointer;transition:0.3s;}
+  .lang-toggle:hover{background:#01579b;}
+  nav button{background:transparent;border:2px solid rgba(255,255,255,0.5);color:white;margin:0 5px;padding:0.5rem 1rem;border-radius:20px;cursor:pointer;transition:0.3s;}
+  nav button:hover{background:rgba(255,255,255,0.3);}
+  section{height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:2rem;opacity:0;transform:translateY(100px);transition:all 1.2s ease;backdrop-filter:blur(6px);background:rgba(0,0,0,0.3);border-radius:15px;margin:20px;}
+  section.active{opacity:1;transform:translateY(0);}
+  img{max-width:300px;border-radius:15px;box-shadow:0 6px 18px rgba(0,0,0,0.4);margin-bottom:1rem;}
+  footer{text-align:center;padding:2rem;background:rgba(2,136,209,0.9);color:white;backdrop-filter:blur(6px);}
+</style>
+</head>
+<body>
+  <header>
+    <h1 data-en="Internal Audit Manual" data-id="Pedoman Audit Internal">Internal Audit Manual</h1>
+    <nav>
+      <button onclick="showSection('cover')">Cover</button>
+      <button onclick="showSection('intro')">Intro</button>
+      <button onclick="showSection('charter')">Charter</button>
+      <button onclick="showSection('planning')">Planning</button>
+      <button onclick="showSection('execution')">Execution</button>
+      <button onclick="showSection('reporting')">Reporting</button>
+      <button onclick="showSection('qa')">Quality</button>
+    </nav>
+    <button class="lang-toggle" onclick="toggleLang()">ID</button>
+  </header>
+
+  <section id="cover" class="active">
+    <img src="cover.jpg" alt="Cover" />
+    <h2 data-en="Internal Audit Manual — Summary Edition" data-id="Pedoman Audit Internal — Edisi Ringkas">Internal Audit Manual — Summary Edition</h2>
+    <p data-en="Created by Adi Gunawan Tahir" data-id="Dibuat oleh Adi Gunawan Tahir">Created by Adi Gunawan Tahir</p>
+  </section>
+
+  <section id="intro">
+    <h2 data-en="Introduction & Purpose" data-id="Pendahuluan & Tujuan">Introduction & Purpose</h2>
+    <p data-en="Internal Audit acts as a trusted advisor to enhance value and ensure organizational integrity." data-id="Audit Internal bertindak sebagai penasihat tepercaya untuk meningkatkan nilai dan memastikan integritas organisasi."></p>
+  </section>
+
+  <section id="charter">
+    <h2 data-en="Audit Charter & Independence" data-id="Piagam Audit & Independensi">Audit Charter & Independence</h2>
+    <p data-en="Defines authority, independence, and reporting structure to maintain objectivity." data-id="Menetapkan kewenangan, independensi, dan struktur pelaporan untuk menjaga objektivitas."></p>
+  </section>
+
+  <section id="planning">
+    <h2 data-en="Risk-based Planning" data-id="Perencanaan Berbasis Risiko">Risk-based Planning</h2>
+    <p data-en="Audit planning uses risk-based assessment to focus on high-risk areas." data-id="Perencanaan audit menggunakan penilaian berbasis risiko untuk fokus pada area berisiko tinggi."></p>
+  </section>
+
+  <section id="execution">
+    <h2 data-en="Execution & Evidence" data-id="Pelaksanaan & Bukti">Execution & Evidence</h2>
+    <p data-en="Collect data, test controls, and document evidence with professionalism." data-id="Kumpulkan data, uji pengendalian, dan dokumentasikan bukti secara profesional."></p>
+  </section>
+
+  <section id="reporting">
+    <h2 data-en="Reporting & Follow-up" data-id="Pelaporan & Tindak Lanjut">Reporting & Follow-up</h2>
+    <p data-en="Summarize findings, gain management response, and ensure follow-up of corrective actions." data-id="Rangkum temuan, dapatkan tanggapan manajemen, dan pastikan tindak lanjut dari tindakan korektif."></p>
+  </section>
+
+  <section id="qa">
+    <h2 data-en="Quality & Improvement" data-id="Mutu & Peningkatan">Quality & Improvement</h2>
+    <p data-en="Continuous improvement through Quality Assurance Programs and auditor development." data-id="Peningkatan berkelanjutan melalui Program Penjaminan Mutu dan pengembangan auditor."></p>
+  </section>
+
+  <footer>&copy; 2025 Adi Gunawan Tahir</footer>
+
+  <script>
+    let currentLang = 'en';
+    function toggleLang(){
+      currentLang = currentLang === 'en' ? 'id' : 'en';
+      document.querySelector('.lang-toggle').textContent = currentLang === 'en' ? 'ID' : 'EN';
+      document.querySelectorAll('[data-en]').forEach(el=>{
+        el.textContent = el.getAttribute(`data-${currentLang}`);
+      });
+    }
+
+    function showSection(id){
+      document.querySelectorAll('section').forEach(sec=>sec.classList.remove('active'));
+      const active=document.getElementById(id);
+      active.classList.add('active');
+      active.style.opacity='0';
+      active.style.transform='translateY(120px)';
+      setTimeout(()=>{
+        active.style.opacity='1';
+        active.style.transform='translateY(0)';
+      },200);
+      window.scrollTo({top:0,behavior:'smooth'});
+    }
+
+    window.addEventListener('scroll',()=>{
+      const secs=document.querySelectorAll('section');
+      secs.forEach(sec=>{
+        const rect=sec.getBoundingClientRect();
+        if(rect.top<window.innerHeight*0.75){
+          sec.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
