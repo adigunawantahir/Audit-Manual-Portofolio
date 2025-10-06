@@ -13,7 +13,7 @@
             --text-color: #1a1a1a;
             --header-color: #333366; 
             --accent-color: #FFD700; 
-            --font-size-base: 13pt; /* Ditingkatkan menjadi 13pt */
+            --font-size-base: 14pt; 
             --animation-duration: 0.8s;
         }
 
@@ -25,7 +25,6 @@
             padding: 0;
             line-height: 1.6;
             background-color: var(--light-blue);
-            /* Efek Kartun Interaktif pada Background */
             background-image: repeating-linear-gradient(
                 45deg, 
                 rgba(255, 255, 255, 0.1), 
@@ -47,46 +46,61 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 20px;
+            padding: 10px 10px; 
+            flex-wrap: wrap; 
+        }
+        nav {
+            flex-grow: 1; 
+            display: flex;
+            justify-content: center;
         }
         nav ul {
             list-style: none;
             display: flex;
             margin: 0;
             padding: 0;
+            flex-wrap: wrap; 
         }
         nav ul li a {
             color: white;
             text-decoration: none;
-            padding: 8px 15px;
+            padding: 8px 8px; 
             display: block;
             border-radius: 5px;
             transition: background-color 0.3s;
-            text-transform: uppercase; /* Menu dibuat kapital */
+            text-transform: uppercase; 
             font-weight: bold;
+            font-size: 0.85em; 
         }
         
-        /* Tombol Bahasa (Bendera Bulat Timbul) */
-        .lang-toggle {
+        /* Tombol Bendera (Bulat, Timbul) */
+        .lang-button {
             background: none;
             border: none;
             cursor: pointer;
             padding: 0;
-            margin-left: 20px;
+            margin: 0 5px; 
             width: 40px;
             height: 40px;
             font-size: 20px;
             line-height: 40px;
             border-radius: 50%;
             overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.4), inset 0 2px 4px rgba(255,255,255,0.5); /* Efek timbul */
-            transition: transform 0.2s;
+            box-shadow: 0 6px 10px rgba(0,0,0,0.6), inset 0 3px 5px rgba(255,255,255,0.7); 
+            transition: transform 0.2s, box-shadow 0.2s;
             text-align: center;
+            outline: none; 
+        }
+        .lang-button:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.4), inset 0 1px 2px rgba(255,255,255,0.5);
+        }
+        .lang-button.active {
+            box-shadow: 0 2px 4px rgba(0,0,0,0.4), inset 0 1px 2px rgba(255,255,255,0.5), 0 0 0 3px var(--accent-color);
         }
 
         /* Semua Halaman Konten (Section) */
         .page {
-            min-height: 60vh; 
             padding: 40px 5%;
             margin: 30px auto;
             max-width: 1000px;
@@ -96,6 +110,7 @@
             transition: transform var(--animation-duration) ease-out, opacity var(--animation-duration) ease-out;
             opacity: 0; 
             transform: translateY(50px); 
+            min-height: 200px; 
         }
 
         /* Judul Konten - Kapital dan Embose Kuat */
@@ -106,7 +121,7 @@
             padding-bottom: 15px;
             margin-bottom: 25px;
             text-transform: uppercase;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Efek emboss/timbul */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); 
         }
         
         /* Halaman Cover (Bagian 1) */
@@ -123,19 +138,19 @@
             padding: 20px;
         }
         
-        /* Gambar Cover Bulat Timbul (SOLUSI IMAGE FIX) */
+        /* Gambar Cover Bulat Timbul */
         #cover-page img {
             width: 250px;
             height: 250px;
             object-fit: cover; 
-            border-radius: 50%; /* Bulat */
+            border-radius: 50%; 
             border: 5px solid white;
             box-shadow: 
                 0 0 0 10px rgba(255, 255, 255, 0.2), 
                 0 10px 20px rgba(0, 0, 0, 0.5), 
                 inset 0 0 10px rgba(0, 0, 0, 0.2);
             margin-bottom: 30px;
-            background-color: #555; /* Fallback Visual jika cover.jpg gagal dimuat */
+            background-color: #555;
         }
         
         /* Styling Teks Cover */
@@ -146,12 +161,7 @@
             margin-bottom: 10px;
             text-transform: none; 
             letter-spacing: 2px;
-            font-weight: bold; /* Disesuaikan agar matching logo */
-        }
-        #cover-page p {
-            font-size: 1.5em;
-            margin-top: 5px;
-            font-style: italic;
+            font-weight: bold; 
         }
     </style>
 </head>
@@ -167,49 +177,48 @@
     <header>
         <nav>
             <ul id="main-nav">
-                <li><a href="#charter" data-en="1. CHARTER & INDEPENDENCE" data-id="1. PIAGAM & INDEPENDENSI">1. PIAGAM & INDEPENDENSI</a></li>
-                <li><a href="#planning" data-en="2. STRATEGIC PLANNING (AAP)" data-id="2. PERENCANAAN STRATEGIS (AAP)">2. PERENCANAAN STRATEGIS (AAP)</a></li>
-                <li><a href="#execution" data-en="3. AUDIT EXECUTION" data-id="3. PELAKSANAAN AUDIT">3. PELAKSANAAN AUDIT</a></li>
-                <li><a href="#qaip" data-en="4. QAIP (QUALITY ASSURANCE PROGRAM)" data-id="4. QAIP (PROGRAM PENJAMINAN MUTU)">4. QAIP (PROGRAM PENJAMINAN MUTU)</a></li>
-                <li><a href="#eqa" data-en="5. EQA (EXTERNAL QUALITY ASSESSMENT)" data-id="5. EQA (ASESMEN KUALITAS EKSTERNAL)">5. EQA (ASESMEN KUALITAS EKSTERNAL)</a></li>
-                <li><a href="#dev" data-en="6. COMPETENCY DEVELOPMENT" data-id="6. PENGEMBANGAN KOMPETENSI">6. PENGEMBANGAN KOMPETENSI</a></li>
+                <li><a href="#charter" data-en="1. CHARTER" data-id="1. PIAGAM">1. PIAGAM</a></li>
+                <li><a href="#planning" data-en="2. PLANNING (AAP)" data-id="2. PERENCANAAN (AAP)">2. PERENCANAAN (AAP)</a></li>
+                <li><a href="#execution" data-en="3. EXECUTION" data-id="3. PELAKSANAAN">3. PELAKSANAAN</a></li>
+                <li><a href="#qaip" data-en="4. QAIP" data-id="4. QAIP">4. QAIP</a></li>
+                <li><a href="#eqa" data-en="5. EQA" data-id="5. EQA">5. EQA</a></li>
+                <li><a href="#dev" data-en="6. COMPETENCY" data-id="6. KOMPETENSI">6. KOMPETENSI</a></li>
             </ul>
         </nav>
-        <button class="lang-toggle" onclick="toggleLang()" title="Toggle Language">🇺🇸</button>
+        <div>
+            <button class="lang-button" id="en-lang-btn" onclick="setLang('en')" title="English">🇺🇸</button>
+            <button class="lang-button" id="id-lang-btn" onclick="setLang('id')" title="Bahasa Indonesia">🇮🇩</button>
+        </div>
     </header>
     
     <section id="charter" class="page">
         <h2 data-en="1. AUDIT CHARTER AND INDEPENDENCE" data-id="1. PIAGAM DAN KEWENANGAN AUDIT INTERNAL">1. PIAGAM DAN KEWENANGAN AUDIT INTERNAL</h2>
-        [cite_start]<p data-en="The authority, role, and responsibilities of the Internal Audit Function are formally defined in the Internal Audit Charter[cite: 31]. [cite_start]This document is the constitutional foundation that grants the function its mandate to provide independent and objective assurance and advice to protect and enhance organizational value[cite: 31, 32]. [cite_start]As a strategic partner, the function systematically evaluates and promotes improvements in governance, risk management, and control processes [cite: 32][cite_start]." data-id="Kewenangan, peran, dan tanggung jawab Fungsi Audit Internal secara formal didefinisikan dalam Piagam Audit Internal[cite: 24]. [cite_start]Dokumen ini adalah landasan konstitusional yang memberikan mandat untuk memberikan keyakinan (assurance) dan saran (advice) yang independen dan objektif guna melindungi serta meningkatkan nilai organisasi[cite: 25, 32]. [cite_start]Sebagai mitra strategis, fungsi ini secara sistematis mengevaluasi dan mendorong perbaikan pada tiga pilar utama: proses tata kelola (governance), manajemen risiko, dan pengendalian (control)[cite: 26]."></p>
-        [cite_start]<p data-en="To ensure this mandate is executed effectively, the Charter establishes independence through a direct functional reporting structure to the [Audit Committee or equivalent oversight body][cite: 34, 35]. [cite_start]This structure provides the necessary authority, ensures unrestricted access to all records, assets, and personnel, and guarantees freedom from undue interference [cite: 35][cite_start]." data-id="Untuk memastikan mandat tersebut dapat dilaksanakan secara efektif, Piagam Audit Internal juga menetapkan independensi melalui struktur pelaporan fungsional langsung kepada [Komite Audit atau badan pengawas setara][cite: 28, 34]. [cite_start]Struktur ini memberikan kewenangan yang diperlukan, memastikan akses tidak terbatas ke seluruh catatan, aset, dan personel, serta menjamin kebebasan dari campur tangan yang tidak semestinya[cite: 29, 35]."></p>
+        <p data-en="The authority, role, and responsibilities of the Internal Audit Function are formally defined in the Internal Audit Charter. This document is the constitutional foundation that grants the function its mandate to provide independent and objective assurance and advice to protect and enhance organizational value. As a strategic partner, the function systematically evaluates and promotes improvements in governance, risk management, and control processes. Independence is realized through a direct functional reporting structure to the [Audit Committee or equivalent oversight body]. This structure provides the necessary authority, ensures unrestricted access to all records, assets, and personnel, and guarantees freedom from undue interference." data-id="Kewenangan, peran, dan tanggung jawab Fungsi Audit Internal secara formal didefinisikan dalam Piagam Audit Internal. Dokumen ini adalah landasan konstitusional yang memberikan mandat untuk memberikan keyakinan (assurance) dan saran (advice) yang independen dan objektif guna melindungi serta meningkatkan nilai organisasi. Sebagai mitra strategis, fungsi ini secara sistematis mengevaluasi dan mendorong perbaikan pada tiga pilar utama: proses tata kelola (governance), manajemen risiko, dan pengendalian (control). Independensi direalisasikan melalui struktur pelaporan fungsional langsung kepada [Komite Audit atau badan pengawas setara]. Struktur ini memberikan kewenangan yang diperlukan, memastikan akses tidak terbatas ke seluruh catatan, aset, dan personel, serta menjamin kebebasan dari campur tangan yang tidak semestinya."></p>
     </section>
 
     <section id="planning" class="page">
         <h2 data-en="2. STRATEGIC & ANNUAL AUDIT PLANNING (AAP)" data-id="2. PERENCANAAN AUDIT STRATEGIS & TAHUNAN (AAP)">2. PERENCANAAN AUDIT STRATEGIS & TAHUNAN (AAP)</h2>
-        [cite_start]<p data-en="The foundation of effective audit planning is a risk-based approach[cite: 62]. [cite_start]This methodology ensures that resources are strategically allocated to the areas of most significant risk to the achievement of objectives, thereby maximizing the value of each engagement [cite: 62, 63][cite_start]." data-id="Landasan dari perencanaan audit yang efektif adalah pendekatan yang berfokus pada risiko (risk-based approach)[cite: 51]. [cite_start]Metodologi ini memastikan bahwa sumber daya dialokasikan secara strategis ke area yang memiliki risiko paling signifikan terhadap pencapaian tujuan, sehingga memaksimalkan nilai tambah dari setiap penugasan[cite: 52, 62]."></p>
-        [cite_start]<p data-en="The process begins with the development of the Audit Universe, a comprehensive inventory of all auditable entities and systems[cite: 63, 64]. [cite_start]Each component is then evaluated through a systematic Risk Assessment[cite: 65, 66]. [cite_start]The culmination of this process is the creation of the **Annual Audit Plan (AAP)**[cite: 67, 68]. [cite_start]The AAP is a strategic document that outlines the engagements, timing, and resource allocation, and is presented for approval [cite: 68, 70][cite_start]." data-id="Proses ini dimulai dengan pengembangan Semesta Audit (Audit Universe), yaitu sebuah inventaris komprehensif dari seluruh entitas, proses, dan sistem[cite: 53, 64]. [cite_start]Setiap komponen kemudian dievaluasi melalui Penilaian Risiko yang sistematis[cite: 55, 66]. [cite_start]Puncak dari proses ini adalah penyusunan **Rencana Audit Tahunan (AAP)**[cite: 57, 67]. [cite_start]AAP adalah dokumen strategis yang menguraikan penugasan, jadwal, dan alokasi sumber daya, yang kemudian disajikan untuk mendapatkan persetujuan[cite: 58, 70]."></p>
+        <p data-en="The foundation of effective audit planning is a risk-based approach. This methodology ensures that resources are strategically allocated to the areas of most significant risk to the achievement of objectives, thereby maximizing the value of each engagement. The process begins with the development of the **Audit Universe**, a comprehensive inventory of all auditable entities and systems. Each component is then evaluated through a systematic Risk Assessment. The culmination of this process is the creation of the **Annual Audit Plan (AAP)**. The AAP is a strategic document that outlines the engagements, timing, and resource allocation, and is presented for approval." data-id="Landasan dari perencanaan audit yang efektif adalah pendekatan yang berfokus pada risiko (risk-based approach). Metodologi ini memastikan bahwa sumber daya dialokasikan secara strategis ke area yang memiliki risiko paling signifikan terhadap pencapaian tujuan, sehingga memaksimalkan nilai tambah dari setiap penugasan. Proses ini dimulai dengan pengembangan **Semesta Audit (Audit Universe)**, yaitu sebuah inventaris komprehensif dari seluruh entitas, proses, dan sistem. Setiap komponen kemudian dievaluasi melalui Penilaian Risiko yang sistematis. Puncak dari proses ini adalah penyusunan **Rencana Audit Tahunan (AAP)**. AAP adalah dokumen strategis yang menguraikan penugasan, jadwal, dan alokasi sumber daya, yang kemudian disajikan untuk mendapatkan persetujuan."></p>
     </section>
 
     <section id="execution" class="page">
         <h2 data-en="3. AUDIT EXECUTION (TESTING & EVIDENCE)" data-id="3. PELAKSANAAN AUDIT (PENGUJIAN & BUKTI)">3. PELAKSANAAN AUDIT (PENGUJIAN & BUKTI)</h2>
-        [cite_start]<p data-en="The audit team will gather relevant information to obtain a thorough understanding of the business processes, internal control systems, and inherent risks within the audited area[cite: 93, 94]. Techniques employed include document reviews, process observations, and interviews with key personnel. [cite_start]This understanding forms the basis for designing effective testing procedures [cite: 95][cite_start]." data-id="Tim audit akan mengumpulkan informasi yang relevan untuk memperoleh pemahaman mendalam mengenai proses bisnis, sistem pengendalian internal, dan risiko yang melekat pada area yang diaudit[cite: 90, 93]. Teknik yang digunakan mencakup tinjauan dokumen, observasi proses, dan wawancara dengan personel kunci. [cite_start]Pemahaman ini menjadi dasar untuk merancang prosedur pengujian yang efektif[cite: 92]."></p>
-        [cite_start]<p data-en="The Internal Audit Function will perform tests to evaluate the design and operational effectiveness of internal controls[cite: 96, 97]. All findings must be supported by sufficient, reliable, relevant, and useful audit evidence. [cite_start]This evidence provides a solid basis for any conclusions and recommendations presented [cite: 98, 99][cite_start]." data-id="Fungsi Audit Internal akan melakukan pengujian untuk mengevaluasi desain dan efektivitas operasional dari pengendalian internal[cite: 96, 97]. [cite_start]Seluruh temuan harus didukung oleh bukti audit yang cukup, andal, relevan, dan bermanfaat[cite: 98, 99]. [cite_start]Bukti ini menjadi dasar yang kuat untuk setiap kesimpulan dan rekomendasi yang disampaikan[cite: 100]."></p>
+        <p data-en="The audit team will gather relevant information to obtain a thorough understanding of the business processes, internal control systems, and inherent risks within the audited area. Techniques employed include document reviews, process observations, and interviews with key personnel. This understanding forms the basis for designing effective testing procedures. The Internal Audit Function will perform tests to evaluate the design and operational effectiveness of internal controls. All findings must be supported by sufficient, reliable, relevant, and useful audit evidence. This evidence provides a solid basis for any conclusions and recommendations presented." data-id="Tim audit akan mengumpulkan informasi yang relevan untuk memperoleh pemahaman mendalam mengenai proses bisnis, sistem pengendalian internal, dan risiko yang melekat pada area yang diaudit. Teknik yang digunakan mencakup tinjauan dokumen, observasi proses, dan wawancara dengan personel kunci. Pemahaman ini menjadi dasar untuk merancang prosedur pengujian yang efektif. Fungsi Audit Internal akan melakukan pengujian untuk mengevaluasi desain dan efektivitas operasional dari pengendalian internal. Seluruh temuan harus didukung oleh bukti audit yang cukup, andal, relevan, dan bermanfaat. Bukti ini menjadi dasar yang kuat untuk setiap kesimpulan dan rekomendasi yang disampaikan."></p>
     </section>
 
     <section id="qaip" class="page">
         <h2 data-en="4. QAIP (QUALITY ASSURANCE AND IMPROVEMENT PROGRAM)" data-id="4. QAIP (PROGRAM PENJAMINAN MUTU DAN PENINGKATAN KUALITAS)">4. QAIP (PROGRAM PENJAMINAN MUTU DAN PENINGKATAN KUALITAS)</h2>
-        [cite_start]<p data-en="The Internal Audit Function runs a **Quality Assurance and Improvement Program (QAIP)**[cite: 145, 153]. [cite_start]This program includes ongoing monitoring of the performance of the audit activity (e.g., through supervision) and periodic internal assessments[cite: 153, 154]. [cite_start]These internal assessments evaluate conformance with the IIA Standards, the Code of Ethics, and the overall effectiveness of the function [cite: 154, 155][cite_start]." data-id="Fungsi Audit Internal menjalankan **Program Penjaminan dan Peningkatan Kualitas (QAIP)**[cite: 145, 146]. [cite_start]Program ini mencakup pemantauan berkelanjutan atas kinerja aktivitas audit (misalnya melalui supervisi) dan penilaian internal secara periodik[cite: 146, 147]. [cite_start]Penilaian internal ini mengevaluasi kesesuaian dengan Standar IIA, Kode Etik, dan efektivitas fungsi secara keseluruhan[cite: 147, 155]."></p>
+        <p data-en="The Internal Audit Function runs a **Quality Assurance and Improvement Program (QAIP)**. This program includes ongoing monitoring of the performance of the audit activity (e.g., through supervision) and periodic internal assessments. These internal assessments evaluate conformance with the IIA Standards, the Code of Ethics, and the overall effectiveness of the function." data-id="Fungsi Audit Internal menjalankan **Program Penjaminan dan Peningkatan Kualitas (QAIP)**. Program ini mencakup pemantauan berkelanjutan atas kinerja aktivitas audit (misalnya melalui supervisi) dan penilaian internal secara periodik. Penilaian internal ini mengevaluasi kesesuaian dengan Standar IIA, Kode Etik, dan efektivitas fungsi secara keseluruhan."></p>
     </section>
 
     <section id="eqa" class="page">
         <h2 data-en="5. EQA (EXTERNAL QUALITY ASSESSMENT)" data-id="5. EQA (PENILAIAN KUALITAS EKSTERNAL)">5. EQA (PENILAIAN KUALITAS EKSTERNAL)</h2>
-        [cite_start]<p data-en="In accordance with the IIA Standards, the Internal Audit Function will undergo an **External Quality Assessment (EQA)** [cite: 156] [cite_start]by a qualified, independent assessor at least once every five years[cite: 149, 156]. [cite_start]The results of this assessment will be reported to the [Audit Committee or equivalent oversight body] and will serve as a key input for continuous improvement [cite: 157, 150][cite_start]." data-id="Sesuai dengan Standar IIA, Fungsi Audit Internal akan menjalani **Penilaian Kualitas Eksternal (EQA)** [cite: 149] [cite_start]oleh penilai yang independen dan kompeten setidaknya sekali setiap lima tahun[cite: 149, 156]. [cite_start]Hasil dari penilaian ini akan dilaporkan kepada [Komite Audit atau badan pengawas setara] dan menjadi masukan penting untuk peningkatan berkelanjutan[cite: 150, 157]."></p>
+        <p data-en="In accordance with the IIA Standards, the Internal Audit Function will undergo an **External Quality Assessment (EQA)** by a qualified, independent assessor at least once every five years. The results of this assessment will be reported to the [Audit Committee or equivalent oversight body] and will serve as a key input for continuous improvement." data-id="Sesuai dengan Standar IIA, Fungsi Audit Internal akan menjalani **Penilaian Kualitas Eksternal (EQA)** oleh penilai yang independen dan kompeten setidaknya sekali setiap lima tahun. Hasil dari penilaian ini akan dilaporkan kepada [Komite Audit atau badan pengawas setara] dan menjadi masukan penting untuk peningkatan berkelanjutan."></p>
     </section>
 
     <section id="dev" class="page">
         <h2 data-en="6. COMPETENCY AND CONTINUOUS DEVELOPMENT" data-id="6. KOMPETENSI DAN PENGEMBANGAN BERKELANJUTAN">6. KOMPETENSI DAN PENGEMBANGAN BERKELANJUTAN</h2>
-        [cite_start]<p data-en="The Internal Audit Function is committed to the continuous enhancement of the audit team's competence and capacity[cite: 158]. [cite_start]Each internal auditor is responsible for maintaining and developing their knowledge, skills, and other competencies through ongoing professional development [cite: 151, 158][cite_start]." data-id="Fungsi Audit Internal berkomitmen untuk meningkatkan kompetensi dan kapasitas tim audit secara berkelanjutan[cite: 151, 158]. [cite_start]Setiap auditor internal bertanggung jawab untuk menjaga dan mengembangkan pengetahuan, keterampilan, dan kompetensi lainnya melalui program pengembangan profesional berkelanjutan[cite: 152, 158]."></p>
-        [cite_start]<p data-en="This development includes training, professional certifications (such as the **Certified Internal Auditor - CIA**), and self-study [cite: 159][cite_start]." data-id="Pengembangan ini mencakup pelatihan, sertifikasi profesional (seperti **Certified Internal Auditor - CIA**), dan pembelajaran mandiri[cite: 152, 159]."></p>
+        <p data-en="The Internal Audit Function is committed to the continuous enhancement of the audit team's competence and capacity. Each internal auditor is responsible for maintaining and developing their knowledge, skills, and other competencies through ongoing professional development. This development includes training, professional certifications (such as the **Certified Internal Auditor - CIA**), and self-study." data-id="Fungsi Audit Internal berkomitmen untuk meningkatkan kompetensi dan kapasitas tim audit secara berkelanjutan. Setiap auditor internal bertanggung jawab untuk menjaga dan mengembangkan pengetahuan, keterampilan, dan kompetensi lainnya melalui program pengembangan profesional berkelanjutan. Pengembangan ini mencakup pelatihan, sertifikasi profesional (seperti **Certified Internal Auditor - CIA**), dan pembelajaran mandiri."></p>
     </section>
 
     <footer>
@@ -219,34 +228,40 @@
     <script>
         let currentLang = 'en'; 
 
-        // Fungsi Mengganti Bahasa
-        function toggleLang() {
-            currentLang = currentLang === 'en' ? 'id' : 'en';
+        // Fungsi Mengganti Bahasa (Diaktifkan oleh tombol bendera)
+        function setLang(lang) {
+            currentLang = lang;
             
-            const langButton = document.querySelector('.lang-toggle');
+            // Ganti kelas aktif pada tombol bendera
+            document.getElementById('en-lang-btn').classList.remove('active');
+            document.getElementById('id-lang-btn').classList.remove('active');
+            document.getElementById(`${lang}-lang-btn`).classList.add('active');
+
             document.documentElement.lang = currentLang;
-            langButton.innerHTML = currentLang === 'en' ? '🇺🇸' : '🇮🇩';
 
             document.querySelectorAll('[data-en], [data-id]').forEach(el => {
                 const text = el.getAttribute(`data-${currentLang}`);
                 if (text) {
-                    // Hanya ganti teks di elemen yang sesuai
-                    if(el.tagName === 'A' || el.tagName === 'LI' || el.tagName === 'H2' || el.tagName === 'P' || el.tagName === 'SPAN') {
+                    if(el.tagName === 'A' || el.tagName === 'LI' || el.tagName === 'H2' || el.tagName === 'P' || el.tagName === 'SPAN' || el.tagName === 'H1') {
                         el.textContent = text;
                     }
                 }
             });
             
-            // Perbarui Judul (Title)
             document.title = document.querySelector('title').getAttribute(`data-${currentLang}`);
         }
         
-        // Inisialisasi: Atur bendera awal (default EN)
-        document.querySelector('.lang-toggle').innerHTML = '🇺🇸';
-
         // JavaScript untuk Efek Interaktif 'Munching' (Animasi)
         document.addEventListener('DOMContentLoaded', () => {
             const sections = document.querySelectorAll('.page');
+
+            // SOLUSI UNTUK GAMBAR COVER: Memaksa muat ulang gambar dengan timestamp
+            const coverImg = document.querySelector('#cover-page img');
+            if (coverImg) {
+                const timestamp = new Date().getTime();
+                // Menambahkan query parameter unik agar browser memuat ulang gambar
+                coverImg.src = `cover.jpg?v=${timestamp}`;
+            }
 
             const observerOptions = {
                 root: null,
@@ -268,12 +283,10 @@
                 observer.observe(section);
             });
             
-            // Memastikan Cover selalu aktif dan Bahasa diterapkan
             document.getElementById('cover-page').classList.add('active');
 
-            // Set default language after DOM is loaded
-            toggleLang(); 
-            toggleLang(); // Panggil dua kali untuk memastikan default EN diterapkan
+            // Atur default language ke English saat halaman dimuat
+            setLang('en'); 
         });
     </script>
 
