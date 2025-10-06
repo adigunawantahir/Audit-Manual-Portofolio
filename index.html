@@ -15,6 +15,7 @@
             --accent-color: #FFC300; 
             --font-size-base: 1.1em; 
             --animation-duration: 0.5s;
+            --nav-height: 80px; /* Tinggi Navigasi */
         }
 
         body {
@@ -37,15 +38,16 @@
             z-index: 100;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
             display: flex;
-            justify-content: space-between;
+            flex-direction: column; /* Menu dan Tombol Bahasa dipisahkan */
+            justify-content: center;
             align-items: center;
-            padding: 10px 10px; 
-            flex-wrap: wrap; 
+            padding: 0;
+            height: var(--nav-height);
         }
         nav {
-            flex-grow: 1; 
+            width: 100%;
             display: flex;
-            justify-content: center;
+            justify-content: center; /* MEMASTIKAN MENU DI TENGAH HALAMAN */
         }
         nav ul {
             list-style: none;
@@ -53,6 +55,7 @@
             margin: 0;
             padding: 0;
             flex-wrap: wrap; 
+            justify-content: center; 
         }
         nav ul li a {
             color: white;
@@ -65,21 +68,25 @@
             font-weight: bold;
             font-size: 0.8em; 
         }
-        nav ul li a:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
         
-        /* Tombol Bendera (Bulat, Timbul) */
+        /* Tombol Bendera di Sudut Kanan Atas Header */
+        .lang-container {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+        }
         .lang-button {
             background: none;
             border: none;
             cursor: pointer;
             padding: 0;
             margin: 0 5px; 
-            width: 40px;
-            height: 40px;
-            font-size: 20px;
-            line-height: 40px;
+            width: 35px; /* Ukuran sedikit dikecilkan */
+            height: 35px;
+            font-size: 18px;
+            line-height: 35px;
             border-radius: 50%;
             overflow: hidden;
             box-shadow: 0 3px 6px rgba(0,0,0,0.5), inset 0 2px 3px rgba(255,255,255,0.7); 
@@ -112,7 +119,7 @@
 
         /* Judul dan Sub-judul */
         .page h2, .page h3 {
-            text-align: left; /* Memastikan judul rata kiri */
+            text-align: left; 
         }
         .page h2 {
             font-size: 1.8em; 
@@ -125,13 +132,21 @@
             text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1); 
         }
 
-        /* Paragraf dan List Item - PENTING: RATA KIRI-KANAN (JUSTIFIED) */
-        .page p, .page li {
-            text-align: justify; /* Rata Kiri dan Rata Kanan */
+        /* Paragraf dan List Item - PENTING: TATA LETAK SUB-KRITERIA RAPIH */
+        .page p {
+            text-align: justify;
             margin-bottom: 1em; 
             line-height: 1.8;
-            padding-left: 0;
-            list-style-position: inside;
+        }
+        .page ul, .page ol {
+            padding-left: 1.5em; /* Jarak luar dari daftar */
+        }
+        .page li {
+            text-align: justify; 
+            margin-bottom: 1em; 
+            line-height: 1.8;
+            padding-left: 0.5em; /* Memberi ruang agar teks sejajar dengan paragraf */
+            list-style-position: outside; /* Mengatur bullet point di luar teks */
         }
         
         /* Halaman Cover (Bagian 1) */
@@ -148,21 +163,29 @@
             padding: 20px;
         }
         
-        /* Gambar Cover Bulat Timbul */
-        #cover-page img {
+        /* STYLING LOGO INISIAL AGT PENGGANTI GAMBAR COVER */
+        .initials-logo {
             width: 250px;
             height: 250px;
-            object-fit: cover; 
-            border-radius: 50%; 
+            border-radius: 50%;
+            background-color: var(--accent-color); /* Warna latar belakang kontras */
+            color: var(--header-color); /* Warna teks logo */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 5em; /* Ukuran font AGT */
+            font-weight: bold;
+            text-transform: uppercase;
             border: 5px solid white;
             box-shadow: 
                 0 0 0 10px rgba(255, 255, 255, 0.2), 
                 0 10px 20px rgba(0, 0, 0, 0.7), 
                 inset 0 0 10px rgba(0, 0, 0, 0.3);
             margin-bottom: 30px;
-            background-color: #555;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5), 
+                         -2px -2px 3px rgba(255,255,255,0.7); /* Efek glossy/karakter */
         }
-        
+
         /* Styling Judul Word Art Glossy */
         #cover-page h1 {
             font-size: 3.5em; 
@@ -193,7 +216,7 @@
 <body>
 
     <section id="cover-page" class="page active">
-        <img src="cover.jpg" alt="Internal Audit Manual Cover"> 
+        <div class="initials-logo">AGT</div> 
         
         <h1>INTERNAL AUDIT MANUAL</h1>
         <p>Created by; Adi Gunawan Tahir</p>
@@ -210,7 +233,7 @@
                 <li><a href="#dev" data-en="6. COMPETENCY" data-id="6. KOMPETENSI">6. KOMPETENSI</a></li>
             </ul>
         </nav>
-        <div>
+        <div class="lang-container">
             <button class="lang-button" id="en-lang-btn" onclick="setLang('en')" title="English">🇺🇸</button>
             <button class="lang-button" id="id-lang-btn" onclick="setLang('id')" title="Bahasa Indonesia">🇮🇩</button>
         </div>
@@ -241,7 +264,7 @@
     <section id="execution" class="page">
         <h2 data-en="3. AUDIT EXECUTION (TESTING & EVIDENCE)" data-id="3. PELAKSANAAN AUDIT (PENGUJIAN & BUKTI)">3. PELAKSANAAN AUDIT (PENGUJIAN & BUKTI)</h2>
         <p data-en="The audit team will gather relevant information to obtain a thorough understanding of the business processes, internal control systems, and inherent risks within the audited area. This understanding forms the basis for designing effective testing procedures." data-id="Tim audit akan mengumpulkan informasi yang relevan untuk memperoleh pemahaman mendalam mengenai proses bisnis, sistem pengendalian internal, dan risiko yang melekat pada area yang diaudit. Pemahaman ini menjadi dasar untuk merancang prosedur pengujian yang efektif."></p>
-        <h3 style="font-size: 1.2em; color: var(--header-color);" data-en="Execution Procedures:" data-id="Prosedur Pelaksanaan:">Execution Procedures:</h3>
+        <h3 style="font-size: 1.2em; color: var(--header-color);" data-en="Execution Procedures:" data-id="Prosedur Pelaksanaan:">Prosedur Pelaksanaan:</h3>
         <ul>
             <li data-en="Information Gathering via document reviews, process observations, and key personnel interviews." data-id="Pengumpulan Informasi melalui tinjauan dokumen, observasi proses, dan wawancara dengan personel kunci.">Information Gathering via document reviews, process observations, and key personnel interviews.</li>
             <li data-en="Performing tests to evaluate the design and operational effectiveness of internal controls." data-id="Melakukan pengujian untuk mengevaluasi desain dan efektivitas operasional dari pengendalian internal.">Melakukan pengujian untuk mengevaluasi desain dan efektivitas operasional dari pengendalian internal.</li>
@@ -252,7 +275,7 @@
     <section id="qaip" class="page">
         <h2 data-en="4. QAIP (QUALITY ASSURANCE AND IMPROVEMENT PROGRAM)" data-id="4. QAIP (QUALITY ASSURANCE AND IMPROVEMENT PROGRAM)">4. QAIP (QUALITY ASSURANCE AND IMPROVEMENT PROGRAM)</h2>
         <p data-en="The Internal Audit Function runs a Quality Assurance and Improvement Program (QAIP). This program is crucial for maintaining auditor credibility and demonstrating continuous adherence to professional standards." data-id="Fungsi Audit Internal menjalankan Program Penjaminan dan Peningkatan Kualitas (QAIP). Program ini penting untuk menjaga kredibilitas auditor dan menunjukkan kepatuhan berkelanjutan terhadap standar profesional."></p>
-        <h3 style="font-size: 1.2em; color: var(--header-color);" data-en="QAIP Components:" data-id="Komponen QAIP:">QAIP Components:</h3>
+        <h3 style="font-size: 1.2em; color: var(--header-color);" data-en="QAIP Components:" data-id="Komponen QAIP:">Komponen QAIP:</h3>
         <ol>
             <li data-en="Internal Quality Review: Involves ongoing monitoring (supervision) and periodic internal assessments." data-id="Review Kualitas Internal: Melibatkan pemantauan berkelanjutan (supervisi) dan asesmen internal berkala.">Internal Quality Review: Involves ongoing monitoring (supervision) and periodic internal assessments.</li>
             <li data-en="Formal Evaluation: Assesses the function's conformance with IIA Standards and the Code of Ethics." data-id="Evaluasi Formal: Menilai kesesuaian fungsi dengan IIA Standards dan Code of Ethics.">Formal Evaluation: Assesses the function's conformance with IIA Standards and the Code of Ethics.</li>
@@ -262,7 +285,7 @@
     <section id="eqa" class="page">
         <h2 data-en="5. EQA (EXTERNAL QUALITY ASSESSMENT)" data-id="5. EQA (EXTERNAL QUALITY ASSESSMENT)">5. EQA (EXTERNAL QUALITY ASSESSMENT)</h2>
         <p data-en="In accordance with the IIA Standards, the Internal Audit Function will undergo an External Quality Assessment (EQA) by a qualified, independent assessor at least once every five years to ensure maximum objectivity and credibility." data-id="Sesuai dengan Standar IIA, Fungsi Audit Internal akan menjalani Penilaian Kualitas Eksternal (EQA) oleh penilai yang independen dan kompeten setidaknya sekali setiap lima tahun untuk menjamin objektivitas dan kredibilitas maksimal."></p>
-        <h3 style="font-size: 1.2em; color: var(--header-color);" data-en="EQA Key Requirements:" data-id="Persyaratan Utama EQA:">EQA Key Requirements:</h3>
+        <h3 style="font-size: 1.2em; color: var(--header-color);" data-en="EQA Key Requirements:" data-id="Persyaratan Utama EQA:">Persyaratan Utama EQA:</h3>
         <ul>
             <li data-en="Frequency: Must be performed at least once every five years." data-id="Frekuensi: Harus dilakukan setidaknya sekali setiap lima tahun.">Frequency: Must be performed at least once every five years.</li>
             <li data-en="Reporting: Results are reported directly to the Audit Committee." data-id="Pelaporan: Hasil dilaporkan langsung kepada Komite Audit (atau badan pengawas setara).">Reporting: Results are reported directly to the Audit Committee.</li>
@@ -273,7 +296,7 @@
     <section id="dev" class="page">
         <h2 data-en="6. COMPETENCY AND CONTINUOUS DEVELOPMENT" data-id="6. KOMPETENSI DAN PENGEMBANGAN BERKELANJUTAN">6. KOMPETENSI DAN PENGEMBANGAN BERKELANJUTAN</h2>
         <p data-en="The Internal Audit Function is committed to the continuous enhancement of the audit team's competence and capacity. Each internal auditor is responsible for maintaining and developing their knowledge, skills, and other competencies through ongoing professional development." data-id="Fungsi Audit Internal berkomitmen untuk meningkatkan kompetensi dan kapasitas tim audit secara berkelanjutan. Setiap auditor internal bertanggung jawab untuk menjaga dan mengembangkan pengetahuan, keterampilan, dan kompetensi lainnya melalui program pengembangan profesional berkelanjutan."></p>
-        <h3 style="font-size: 1.2em; color: var(--header-color);" data-en="Professional Development Paths:" data-id="Jalur Pengembangan Profesional:">Professional Development Paths:</h3>
+        <h3 style="font-size: 1.2em; color: var(--header-color);" data-en="Professional Development Paths:" data-id="Jalur Pengembangan Profesional:">Jalur Pengembangan Profesional:</h3>
         <ul>
             <li data-en="Continuous Professional Development (CPD) and ongoing training." data-id="Pelatihan dan Pengembangan Profesional Berkelanjutan (CPD).">Continuous Professional Development (CPD) and ongoing training.</li>
             <li data-en="Professional certifications, such as the Certified Internal Auditor (CIA)." data-id="Sertifikasi profesional, seperti Certified Internal Auditor (CIA).">Professional certifications, such as the Certified Internal Auditor (CIA).</li>
@@ -288,6 +311,7 @@
     <script>
         let currentLang = 'en'; 
 
+        // Fungsi Mengganti Bahasa
         function setLang(lang) {
             currentLang = lang;
             
@@ -310,21 +334,33 @@
             document.title = document.querySelector('title').getAttribute(`data-${currentLang}`);
         }
         
+        // Fungsi untuk mengontrol perpindahan halaman (Hanya tampilkan 1 halaman)
+        function showSection(targetId) {
+            // Sembunyikan semua section kecuali cover-page
+            document.querySelectorAll('.page:not(#cover-page)').forEach(sec => {
+                sec.classList.remove('active');
+            });
+
+            // Ganti URL tanpa memuat ulang halaman
+            history.pushState(null, '', `#${targetId}`);
+
+            // Tampilkan section yang dituju
+            const targetSection = document.getElementById(targetId);
+            if (targetSection) {
+                targetSection.classList.add('active');
+                // Gulir ke section tersebut (setelah animasi muncul)
+                setTimeout(() => {
+                    targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100); // Penundaan kecil untuk animasi
+            }
+        }
+        
+        // JavaScript untuk Efek Interaktif (Animasi)
         document.addEventListener('DOMContentLoaded', () => {
             const sections = document.querySelectorAll('.page');
 
-            // SOLUSI UNTUK GAMBAR COVER: Memaksa muat ulang gambar dengan timestamp (Anti-Cache)
-            const coverImg = document.querySelector('#cover-page img');
-            if (coverImg) {
-                const timestamp = new Date().getTime();
-                coverImg.src = `cover.jpg?v=${timestamp}`;
-            }
-
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.1 
-            };
+            // 1. Observer untuk Animasi Scroll (Untuk Tampilan Dinamis)
+            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
 
             const observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
@@ -342,8 +378,29 @@
             
             document.getElementById('cover-page').classList.add('active');
 
-            // Atur default language ke English saat halaman dimuat
+            // 2. Kontrol Navigasi (Memastikan Klik Menu Langsung Tampil)
+            document.querySelectorAll('nav a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault(); 
+                    const targetId = this.getAttribute('href').substring(1);
+                    showSection(targetId);
+                });
+            });
+
+            // 3. Set default language ke English saat halaman dimuat
             setLang('en'); 
+
+            // 4. Handle hash di URL saat load pertama
+            if (window.location.hash && window.location.hash !== '#cover-page') {
+                const initialSectionId = window.location.hash.substring(1);
+                // Sembunyikan cover page jika ada hash selain cover
+                document.getElementById('cover-page').classList.remove('active');
+                showSection(initialSectionId);
+            } else {
+                // Pastikan hanya cover page yang aktif jika tidak ada hash
+                document.querySelectorAll('.page:not(#cover-page)').forEach(sec => sec.classList.remove('active'));
+                document.getElementById('cover-page').classList.add('active');
+            }
         });
     </script>
 
