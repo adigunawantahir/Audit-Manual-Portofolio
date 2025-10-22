@@ -14,7 +14,7 @@
             --header-color: #004d99;
             --accent-color: #FFC300; 
             --font-size-base: 1.1em; 
-            --animation-duration: 0.5s; /* Durasi Fade */
+            --animation-duration: 0.5s;
             --nav-height: 100px; 
         }
 
@@ -26,7 +26,6 @@
             padding: 0;
             line-height: 1.6;
             background-color: var(--light-bg); 
-            background-image: none;
             scroll-behavior: smooth;
         }
 
@@ -71,7 +70,7 @@
             font-size: 0.8em; 
         }
         
-        /* Tombol Bendera di Sudut Kanan Atas Header */
+        /* Tombol Bendera */
         .lang-container {
             position: absolute;
             right: 15px; 
@@ -86,7 +85,7 @@
             border: none;
             cursor: pointer;
             padding: 0;
-            margin: 0 10px; /* PERBAIKAN JARAK BENDERA */
+            margin: 0 10px; 
             width: 35px; 
             height: 35px;
             font-size: 18px;
@@ -102,7 +101,7 @@
             box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset 0 1px 2px rgba(255,255,255,0.5), 0 0 0 3px var(--accent-color);
         }
 
-        /* Semua Halaman Konten (Section) - PENTING UNTUK FADE IN/OUT */
+        /* Konten Halaman */
         .page {
             position: relative; 
             padding: 40px 5%;
@@ -126,7 +125,7 @@
              transform: translateY(0); 
         }
 
-        /* Watermark dan Alignment */
+        /* Watermark */
         .page:not(#cover-page)::before {
             content: "AGT";
             position: absolute;
@@ -140,7 +139,7 @@
             z-index: 1; 
         }
 
-        /* Memastikan Teks Konten Berada di Atas Watermark */
+        /* Judul */
         .page h2, .page h3, .page p, .page ul, .page ol, .page li {
             position: relative;
             z-index: 2; 
@@ -156,28 +155,28 @@
             text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1); 
         }
         
-        /* PERBAIKAN LIST ITEM (LI) AGAR SEJAJAR */
+        /* PERBAIKAN LIST ITEM UNTUK HANGING INDENT */
         .page p {
             text-align: justify;
             margin-bottom: 1em; 
             line-height: 1.8;
         }
         .page ul, .page ol {
-            padding-left: 2em; /* Pertahankan padding awal dari elemen induk */
+            list-style-position: outside; 
             margin-left: 0;
-            list-style-position: inside; /* PENTING: Bullet/angka di dalam kotak LI */
+            padding-left: 2em; 
         }
         .page li {
-            text-align: left; /* PENTING: Membuat teks rata kiri (semua baris sejajar) */
+            text-align: left; 
             margin-bottom: 1em; 
             line-height: 1.8;
-            /* Hapus Hanging Indent yang bermasalah */
-            text-indent: 0; 
-            padding-left: 0; 
+            padding-left: 0;
+            text-indent: 0;
+            margin-left: -1em; /* Mengatur hanging indent yang rapi */
         }
         /* END OF PERBAIKAN LIST ITEM */
 
-        /* Halaman Cover (Bagian 1) */
+        /* Halaman Cover */
         #cover-page {
             display: flex; 
             min-height: 100vh;
@@ -191,7 +190,6 @@
             padding: 20px;
             position: relative; 
             
-            /* AKSEN LATAR BELAKANG */
             background-image: 
                 radial-gradient(circle at 10% 20%, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0) 70%),
                 linear-gradient(135deg, var(--header-color) 0%, #003366 100%); 
@@ -265,10 +263,10 @@
         <nav>
             <ul id="main-nav">
                 <li><a href="#charter" data-en="1. CHARTER" data-id="1. PIAGAM">1. PIAGAM</a></li>
-                <li><a href="#planning" data-en="2. PLANNING (AAP)" data-id="2. PERENCANAAN (AAP - ANNUAL AUDIT PLAN)">2. PERENCANAAN (AAP - ANNUAL AUDIT PLAN)</a></li>
+                <li><a href="#planning" data-en="2. PLANNING (AAP)" data-id="2. PERENCANAAN (AAP)">2. PERENCANAAN (AAP)</a></li>
                 <li><a href="#execution" data-en="3. EXECUTION" data-id="3. PELAKSANAAN">3. PELAKSANAAN</a></li>
-                <li><a href="#qaip" data-en="4. QAIP" data-id="4. QAIP (QUALITY ASSURANCE AND IMPROVEMENT PROGRAM)">4. QAIP (QUALITY ASSURANCE AND IMPROVEMENT PROGRAM)</a></li>
-                <li><a href="#eqa" data-en="5. EQA" data-id="5. EQA (EXTERNAL QUALITY ASSESSMENT)">5. EQA (EXTERNAL QUALITY ASSESSMENT)</a></li>
+                <li><a href="#qaip" data-en="4. QAIP" data-id="4. QAIP">4. QAIP</a></li>
+                <li><a href="#eqa" data-en="5. EQA" data-id="5. EQA">5. EQA</a></li>
                 <li><a href="#dev" data-en="6. COMPETENCY" data-id="6. KOMPETENSI">6. KOMPETENSI</a></li>
             </ul>
         </nav>
@@ -306,7 +304,7 @@
         <h3 style="font-size: 1.2em; color: var(--header-color);" data-en="Execution Procedures:" data-id="Prosedur Pelaksanaan:">Prosedur Pelaksanaan:</h3>
         <ul>
             <li data-en="Information Gathering via document reviews, process observations, and key personnel interviews." data-id="Pengumpulan Informasi melalui tinjauan dokumen, observasi proses, dan wawancara dengan personel kunci.">Information Gathering via document reviews, process observations, and key personnel interviews.</li>
-            <li data-en="Performing tests to evaluate the design and operational effectiveness of internal controls." data-id="Melakukan pengujian untuk mengevaluasi desain dan efektivitas operasional dari pengendalian internal.">Melakukan pengujian untuk mengevaluasi desain dan efektivitas operasional dari pengendalian internal.</li>
+            <li data-en="Performing tests to evaluate the design and operational effectiveness of internal controls." data-id="Melakukan pengujian untuk mengevaluasi desain dan efektivitas operasional dari pengendalian internal.">Performing tests to evaluate the design and operational effectiveness of internal controls.</li>
             <li data-en="All findings must be supported by sufficient, reliable, relevant, and useful audit evidence." data-id="Semua temuan harus didukung oleh bukti audit yang cukup, andal, relevan, dan bermanfaat.">All findings must be supported by sufficient, reliable, relevant, and useful audit evidence.</li>
         </ul>
     </section>
@@ -317,7 +315,7 @@
         <h3 style="font-size: 1.2em; color: var(--header-color);" data-en="QAIP Components:" data-id="Komponen QAIP:">Komponen QAIP:</h3>
         <ol>
             <li data-en="Internal Quality Review: Involves ongoing monitoring (supervision) and periodic internal assessments." data-id="Review Kualitas Internal: Melibatkan pemantauan berkelanjutan (supervisi) dan asesmen internal berkala.">Internal Quality Review: Involves ongoing monitoring (supervision) and periodic internal assessments.</li>
-            <li data-en="Formal Evaluation: Assesses the function's conformance with IIA Standards and the Code of Ethics." data-id="Evaluasi Formal: Menilai kesesuaian fungsi dengan IIA Standards dan Code of Ethics.">Evaluasi Formal: Assesses the function's conformance with IIA Standards and the Code of Ethics.</li>
+            <li data-en="Formal Evaluation: Assesses the function's conformance with IIA Standards and the Code of Ethics." data-id="Evaluasi Formal: Menilai kesesuaian fungsi dengan IIA Standards dan Code of Ethics.">Formal Evaluation: Assesses the function's conformance with IIA Standards and the Code of Ethics.</li>
         </ol>
     </section>
 
@@ -356,6 +354,7 @@
         const navLinks = document.querySelectorAll('#main-nav a');
         const titleElement = document.querySelector('title');
         const htmlElement = document.documentElement;
+        const headerElement = document.querySelector('header'); // Ambil elemen header
 
         // Fungsi Mengganti Bahasa
         function setLang(lang) {
@@ -372,7 +371,7 @@
             document.querySelectorAll('[data-en], [data-id]').forEach(el => {
                 const text = el.getAttribute(`data-${currentLang}`);
                 if (text) {
-                    if (el.tagName === 'A' || el.tagName === 'TITLE') {
+                    if (el.tagName === 'A' || el.tagName === 'TITLE' || el.tagName === 'SPAN') {
                         el.textContent = text;
                     } else {
                         el.innerHTML = text;
@@ -383,7 +382,7 @@
             document.getElementById(`${currentLang}-lang-btn`).classList.add('active');
         }
 
-        // Fungsi Menampilkan Halaman (dengan Fade In/Out)
+        // Fungsi Menampilkan Halaman (dengan Perbaikan Scroll Tepat)
         function showPage(pageId) {
             clickSound.play().catch(e => console.log('Click sound play error:', e)); 
 
@@ -396,9 +395,25 @@
                 const targetPage = document.querySelector(pageId);
                 if (targetPage) {
                     targetPage.classList.add('active');
+                    
                     if(pageId !== '#cover-page') {
+                        // Dapatkan tinggi header (yang sticky)
+                        const headerHeight = headerElement.offsetHeight; 
+                        
+                        // Dapatkan posisi target halaman
+                        const targetTop = targetPage.offsetTop; 
+                        
+                        // Hitung posisi scroll: Target Top - Tinggi Header. Kurangi 20px agar ada sedikit ruang.
+                        const scrollToPosition = targetTop - headerHeight - 20; 
+                        
                         window.scrollTo({
-                            top: document.getElementById('cover-page').offsetHeight,
+                            top: scrollToPosition,
+                            behavior: 'smooth'
+                        });
+                    } else {
+                        // Jika kembali ke cover-page, scroll ke paling atas
+                        window.scrollTo({
+                            top: 0,
                             behavior: 'smooth'
                         });
                     }
@@ -415,7 +430,11 @@
         
         // Inisialisasi: Atur Bahasa dan Cover Page
         document.addEventListener('DOMContentLoaded', () => {
-            setLang('en'); 
+            const storedLang = localStorage.getItem('auditLang') || 'en';
+            setLang(storedLang); 
+            
+            // Tampilkan cover page saat dimuat
+            showPage('#cover-page');
             
             // Event Listeners untuk Navigasi
             navLinks.forEach(link => {
