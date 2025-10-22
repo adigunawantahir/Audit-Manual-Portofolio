@@ -15,7 +15,7 @@
             --accent-color: #FFC300; 
             --font-size-base: 1.1em; 
             --animation-duration: 0.5s;
-            --nav-height: 100px; 
+            --nav-height: 100px; /* Tinggi Header */
         }
 
         body {
@@ -111,7 +111,10 @@
             border-radius: 4px; 
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
             
-            /* KONTROL VISIBILITAS UNTUK FADE */
+            /* SANGAT PENTING: Scroll Offset Menempel Tepat di bawah header */
+            scroll-margin-top: var(--nav-height); 
+
+            /* KONTROL VISIBILITAS UNTUK FADE (halaman eksklusif) */
             display: block; 
             visibility: hidden;
             opacity: 0; 
@@ -125,7 +128,7 @@
              transform: translateY(0); 
         }
 
-        /* Watermark */
+        /* Watermark dan Judul */
         .page:not(#cover-page)::before {
             content: "AGT";
             position: absolute;
@@ -138,8 +141,6 @@
             pointer-events: none; 
             z-index: 1; 
         }
-
-        /* Judul */
         .page h2, .page h3, .page p, .page ul, .page ol, .page li {
             position: relative;
             z-index: 2; 
@@ -172,9 +173,8 @@
             line-height: 1.8;
             padding-left: 0;
             text-indent: 0;
-            margin-left: -1em; /* Mengatur hanging indent yang rapi */
+            margin-left: -1em; 
         }
-        /* END OF PERBAIKAN LIST ITEM */
 
         /* Halaman Cover */
         #cover-page {
@@ -196,8 +196,7 @@
             background-size: cover;
             background-position: center;
         }
-        
-        /* LOGO INISIAL AGT */
+        /* ... (Styling cover lainnya tidak diubah) ... */
         .initials-logo {
             width: 250px;
             height: 250px;
@@ -219,8 +218,6 @@
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5), -2px -2px 3px rgba(255,255,255,0.7);
             z-index: 2;
         }
-
-        /* Styling Judul Cover */
         #cover-page h1 {
             font-size: 3.5em; 
             color: white; 
@@ -229,7 +226,6 @@
                 0 0 15px rgba(0, 0, 0, 0.5),
                 0 5px 10px rgba(0, 0, 0, 1), 
                 -2px -2px 3px rgba(255, 255, 255, 0.2); 
-            
             margin-bottom: 10px;
             text-transform: uppercase; 
             letter-spacing: 5px; 
@@ -350,13 +346,11 @@
         const clickSound = new Audio('path/to/your/click.mp3'); 
 
         let currentLang = 'en'; 
-        const pages = document.querySelectorAll('.page');
         const navLinks = document.querySelectorAll('#main-nav a');
-        const titleElement = document.querySelector('title');
-        const htmlElement = document.documentElement;
-        const headerElement = document.querySelector('header'); // Ambil elemen header
+        const pages = document.querySelectorAll('.page'); // Ambil semua elemen section.page
+        const headerElement = document.querySelector('header'); 
 
-        // Fungsi Mengganti Bahasa
+        // Fungsi Mengganti Bahasa (tidak diubah)
         function setLang(lang) {
             if (currentLang === lang) return;
 
@@ -366,7 +360,7 @@
             document.getElementById('id-lang-btn').classList.remove('active');
             document.getElementById(`${lang}-lang-btn`).classList.add('active');
 
-            htmlElement.lang = currentLang;
+            document.documentElement.lang = currentLang;
 
             document.querySelectorAll('[data-en], [data-id]').forEach(el => {
                 const text = el.getAttribute(`data-${currentLang}`);
@@ -382,36 +376,28 @@
             document.getElementById(`${currentLang}-lang-btn`).classList.add('active');
         }
 
-        // Fungsi Menampilkan Halaman (dengan Perbaikan Scroll Tepat)
+        // Fungsi Menampilkan Halaman (Menjamin Eksklusivitas & Scroll Tepat)
         function showPage(pageId) {
             clickSound.play().catch(e => console.log('Click sound play error:', e)); 
 
-            const activePage = document.querySelector('.page.active');
-            if (activePage) {
-                activePage.classList.remove('active');
-            }
+            const targetPage = document.querySelector(pageId);
             
+            // 1. Sembunyikan semua halaman
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // 2. Tampilkan halaman target setelah penundaan (untuk efek fade-in)
             setTimeout(() => {
-                const targetPage = document.querySelector(pageId);
                 if (targetPage) {
                     targetPage.classList.add('active');
                     
+                    // 3. Lakukan scroll jika bukan cover page
                     if(pageId !== '#cover-page') {
-                        // Dapatkan tinggi header (yang sticky)
-                        const headerHeight = headerElement.offsetHeight; 
-                        
-                        // Dapatkan posisi target halaman
-                        const targetTop = targetPage.offsetTop; 
-                        
-                        // Hitung posisi scroll: Target Top - Tinggi Header. Kurangi 20px agar ada sedikit ruang.
-                        const scrollToPosition = targetTop - headerHeight - 20; 
-                        
-                        window.scrollTo({
-                            top: scrollToPosition,
-                            behavior: 'smooth'
+                         // Menggunakan scrollIntoView yang bekerja dengan scroll-margin-top CSS
+                        targetPage.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start' 
                         });
                     } else {
-                        // Jika kembali ke cover-page, scroll ke paling atas
                         window.scrollTo({
                             top: 0,
                             behavior: 'smooth'
@@ -420,6 +406,7 @@
                 }
             }, 50); 
 
+            // 4. Update status aktif di navigasi
             navLinks.forEach(link => {
                 link.style.backgroundColor = 'transparent';
                 if (link.getAttribute('href') === pageId) {
@@ -428,7 +415,7 @@
             });
         }
         
-        // Inisialisasi: Atur Bahasa dan Cover Page
+        // Inisialisasi: Atur Bahasa dan Event Listeners
         document.addEventListener('DOMContentLoaded', () => {
             const storedLang = localStorage.getItem('auditLang') || 'en';
             setLang(storedLang); 
@@ -440,12 +427,17 @@
             navLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
+                    
+                    // Menggunakan hash untuk mendukung solusi scroll-margin-top
+                    window.location.hash = this.getAttribute('href'); 
                     showPage(this.getAttribute('href'));
                 });
             });
             
             // Menghubungkan Cover Page ke Halaman 1 
             document.querySelector('#cover-page').addEventListener('click', function() {
+                // Scroll langsung ke #charter
+                window.location.hash = '#charter'; 
                 showPage('#charter'); 
             });
             
